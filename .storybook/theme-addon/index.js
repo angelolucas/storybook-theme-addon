@@ -14,6 +14,6 @@ export default makeDecorator({
     channel.emit('my/customEvent', parameters);
     // we can also add subscriptions here using channel.on('eventName', callback);
 
-    return <div>{getStory(context)}Há!</div>;
+    return <>{getStory(context)}teste</>;
   },
 });

@@ -2,6 +2,7 @@ import React from 'react';
 import { configure, addDecorator } from '@storybook/react';
 import { ThemeProvider } from '@src';
 import GlobalStyle from './global-style';
+import ThemeAddon from '@theme-addon';
 
 // Apply global style to stories
 const withGlobal = storyFn => (

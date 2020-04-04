@@ -20,7 +20,7 @@ module.exports = {
       {
         alias: {
           '@src': './src',
-          '@docs': './docs',
+          '@theme-addon': './.storybook/theme-addon',
         },
       },
     ],

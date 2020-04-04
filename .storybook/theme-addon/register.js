@@ -1,6 +1,6 @@
 import React from 'react';
 import { addons } from '@storybook/addons';
-import { useChannel } from '@storybook/api';
+import { useAddonState, useChannel } from '@storybook/api';
 import { STORY_CHANGED } from '@storybook/core-events';
 import { AddonPanel } from '@storybook/components';
 
@@ -13,8 +13,15 @@ const MyPanel = () => {
       /* so something */
     },
   });
+  const [state, setState] = useAddonState('my/addon-id', 'initial state');
 
-  return <button onClick={() => emit('my/otherEvent')}>click to emit</button>;
+  return (
+    <>
+      <button onClick={() => setState('a new value')}>
+        the state = "{state}"
+      </button>
+    </>
+  );
 };
 
 // Register the addon with a unique name.
