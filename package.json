@@ -3,12 +3,26 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "scripts": {},
+  "scripts": {
+    "start": "start-storybook -p 1234",
+    "build": "build-storybook"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/angelolucas/storybook-theme-addon.git"
   },
   "author": "Ângelo Lucas",
   "license": "MIT",
-  "homepage": "https://github.com/angelolucas/storybook-theme-addon#readme"
+  "homepage": "https://github.com/angelolucas/storybook-theme-addon#readme",
+  "dependencies": {
+    "storybook": "^5.3.18"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.9.0",
+    "@storybook/addon-actions": "^5.3.18",
+    "@storybook/addon-links": "^5.3.18",
+    "@storybook/addons": "^5.3.18",
+    "@storybook/react": "^5.3.18",
+    "babel-loader": "^8.1.0"
+  }
 }
