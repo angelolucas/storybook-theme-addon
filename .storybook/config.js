@@ -1,18 +1,8 @@
 import React from 'react';
 import { configure, addDecorator } from '@storybook/react';
-import { ThemeProvider } from '@src';
-import GlobalStyle from './global-style';
-import ThemeAddon from '@theme-addon';
+import Wrapper from './wrapper';
 
-// Apply global style to stories
-const withGlobal = storyFn => (
-  <ThemeProvider theme="clean">
-    <GlobalStyle />
-    {storyFn()}
-  </ThemeProvider>
-);
-
-addDecorator(withGlobal);
+addDecorator(Wrapper);
 
 // automatically import all files ending in *.stories.js
 configure(require.context('../src', true, /\.stories\.(js|mdx)$/), module);
