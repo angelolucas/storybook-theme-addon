@@ -1,38 +1,30 @@
 import React from 'react';
-import { addons } from '@storybook/addons';
-import { useAddonState, useChannel } from '@storybook/api';
+import { addons, types } from '@storybook/addons';
+import { useAddonState, useStorybookState, useChannel } from '@storybook/api';
 import { STORY_CHANGED } from '@storybook/core-events';
 import { AddonPanel } from '@storybook/components';
+//console.log({ addons });
 
 const MyPanel = () => {
-  const emit = useChannel({
-    STORY_RENDERED: id => {
-      /* do something */
-    },
-    'my/customEvent': () => {
-      /* so something */
-    },
-  });
-  const [state, setState] = useAddonState('my/addon-id', 'initial state');
+  const [theme, setTheme] = useAddonState('my/addon/panel', 'default');
 
   return (
     <>
-      <button onClick={() => setState('a new value')}>
-        the state = "{state}"
-      </button>
+      <p>theme: {theme}</p>
+      <select>
+        <option onClick={() => setTheme('default')}>default</option>
+        <option onClick={() => setTheme('dark')}>dark</option>
+      </select>
     </>
   );
 };
 
 // Register the addon with a unique name.
-addons.register('my/addon', api => {
+addons.register('my/addon/panel', api => {
   // Also need to set a unique name to the panel.
-  addons.addPanel('my/addon/panel', {
+  addons.add('my/addon/panel', {
     title: 'My Addon',
-    render: ({ active, key }) => (
-      <AddonPanel key={key} active={active}>
-        <MyPanel />
-      </AddonPanel>
-    ),
+    type: types.TOOL,
+    render: () => <MyPanel />,
   });
 });
