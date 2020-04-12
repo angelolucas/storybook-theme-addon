@@ -12,16 +12,14 @@ import { AddonPanel } from '@storybook/components';
 //console.log({ addons });
 
 const MyPanel = () => {
-  const [theme, setTheme] = useAddonState('my/addon/panel', 'default');
-  console.log(useParameter());
+  const [theme, setTheme] = useAddonState('my/addon/panel', 'clean');
   const channel = addons.getChannel();
-
-  channel.on('change/setTheme', ha => console.log('teste', ha));
+  channel.on('change/setTheme', setTheme);
 
   return (
     <>
       <p>theme: {theme}</p>
-      <button onClick={() => channel.emit('change/setTheme', 'default')}>
+      <button onClick={() => channel.emit('change/setTheme', 'clean')}>
         default
       </button>
       <button onClick={() => channel.emit('change/setTheme', 'dark')}>

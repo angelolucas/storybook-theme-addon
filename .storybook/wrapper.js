@@ -1,12 +1,5 @@
 import React from 'react';
-import GlobalStyle from './global-style';
-import { ThemeProvider } from '@src';
 
-const Wrapper = storyFn => (
-  <ThemeProvider theme="clean">
-    <GlobalStyle />
-    {storyFn()}
-  </ThemeProvider>
-);
+const Wrapper = storyFn => <>{storyFn()}</>;
 
 export default Wrapper;
