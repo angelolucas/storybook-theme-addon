@@ -1,18 +1,10 @@
 import React from 'react';
+import { Typography } from '@src';
 import ThemeAddon from '@theme-addon';
-
-const Welcome = () => <h1>Welcome</h1>;
 
 export default {
   title: 'Welcome',
-  component: Welcome,
   decorators: [ThemeAddon],
 };
 
-export const example = () => <Welcome />;
-
-example.story = {
-  parameters: {
-    myParameter: { data: 'awesome' },
-  },
-};
+export const example = () => <Typography>Welcome</Typography>;

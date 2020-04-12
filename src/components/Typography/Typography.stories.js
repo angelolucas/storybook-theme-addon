@@ -9,9 +9,3 @@ export default {
 };
 
 export const example = () => <Typography>Hello World</Typography>;
-
-example.story = {
-  parameters: {
-    myParameter: { data: 'awesome' },
-  },
-};
