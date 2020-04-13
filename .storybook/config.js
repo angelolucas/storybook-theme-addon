@@ -12,7 +12,7 @@ addParameters({
     { name: 'twitter', value: '#00aced', default: true },
     { name: 'facebook', value: '#3b5998' },
   ],
-  designboxThemes: ['clean', 'dark'],
+  designboxThemes: { values: ['clean', 'dark'], default: 'clean' },
 });
 
 // automatically import all files ending in *.stories.js

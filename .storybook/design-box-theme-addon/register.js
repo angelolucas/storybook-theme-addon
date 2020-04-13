@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { addons, types } from '@storybook/addons';
 import { styled } from '@storybook/theming';
 import { useParameter } from '@storybook/api';
@@ -33,7 +33,7 @@ const ChangeThemeTool = () => {
   };
   const themes = useParameter('designboxThemes');
   const links = closeTooltip =>
-    themes.map((theme, key) => ({
+    themes.values.map((theme, key) => ({
       key: key,
       title: theme,
       onClick: () => {
@@ -42,16 +42,21 @@ const ChangeThemeTool = () => {
       },
     }));
 
+  useEffect(() => {
+    if (themes && !storedTheme) {
+      const initialTheme = themes.default || themes.values[0];
+      localStorage.setItem('design-box-theme', initialTheme);
+      handleChange(initialTheme);
+    }
+  }, [themes]);
+
   return (
     <WithTooltip
       placement="top"
       trigger="click"
       tooltip={({ onHide }) => <TooltipLinkList links={links(onHide)} />}
     >
-      <IconButtonWithLabel
-        key="viewport"
-        title="Change the size of the preview"
-      >
+      <IconButtonWithLabel title="Change the theme">
         <IconButtonLabel>{theme} theme</IconButtonLabel>
         <Icons icon="arrowdown" />
       </IconButtonWithLabel>
