@@ -22,7 +22,6 @@ export default makeDecorator({
       <ThemeProvider theme={theme}>
         <GlobalStyle />
         {getStory(context)}
-        {theme}
       </ThemeProvider>
     );
   },
