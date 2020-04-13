@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import addons, { makeDecorator } from '@storybook/addons';
-import { useAddonState } from '@storybook/api';
+import { useChannel } from '@storybook/api';
 import { ThemeProvider } from '@src';
 import GlobalStyle from '../global-style';
 
@@ -13,6 +13,11 @@ export default makeDecorator({
     const channel = addons.getChannel();
 
     channel.on('change/setTheme', setTheme);
+
+    useEffect(() => {
+      const themeName = localStorage.getItem('design-box-theme');
+      setTheme(themeName);
+    }, []);
 
     return (
       <ThemeProvider theme={theme}>

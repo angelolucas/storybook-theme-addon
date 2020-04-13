@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { addons, types } from '@storybook/addons';
 import {
   useAddonState,
@@ -12,19 +12,19 @@ import { AddonPanel } from '@storybook/components';
 //console.log({ addons });
 
 const MyPanel = () => {
-  const [theme, setTheme] = useAddonState('my/addon/panel', 'clean');
+  const [theme, setTheme] = useState('clean');
   const channel = addons.getChannel();
-  channel.on('change/setTheme', setTheme);
+  const handleChange = themeName => {
+    localStorage.setItem('design-box-theme', themeName);
+    channel.emit('change/setTheme', themeName);
+    setTheme(themeName);
+  };
 
   return (
     <>
       <p>theme: {theme}</p>
-      <button onClick={() => channel.emit('change/setTheme', 'clean')}>
-        default
-      </button>
-      <button onClick={() => channel.emit('change/setTheme', 'dark')}>
-        dark
-      </button>
+      <button onClick={() => handleChange('clean')}>default</button>
+      <button onClick={() => handleChange('dark')}>dark</button>
     </>
   );
 };
