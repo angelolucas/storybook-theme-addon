@@ -1,5 +1,25 @@
 import React, { useState } from 'react';
 import { addons, types } from '@storybook/addons';
+import { styled } from '@storybook/theming';
+import {
+  Icons,
+  IconButton,
+  WithTooltip,
+  TooltipLinkList,
+} from '@storybook/components';
+
+const IconButtonWithLabel = styled(IconButton)(({ theme }) => ({
+  display: 'inline-flex',
+  alignItems: 'center',
+  fontWeight: theme.typography.weight.bold,
+  fontSize: theme.typography.size.s2 - 1,
+  padding: 10,
+}));
+
+const IconButtonLabel = styled.div(({ theme }) => ({
+  fontSize: theme.typography.size.s2 - 1,
+  marginRight: 10,
+}));
 
 const ChangeThemeTool = () => {
   const storedTheme = localStorage.getItem('design-box-theme');
@@ -10,13 +30,39 @@ const ChangeThemeTool = () => {
     channel.emit('design-box/theme', themeName);
     setTheme(themeName);
   };
+  const themes = closeTooltip => [
+    {
+      id: 'clean',
+      title: 'Clean',
+      onClick: () => {
+        handleChange('clean');
+        closeTooltip();
+      },
+    },
+    {
+      id: 'dark',
+      title: 'Dark',
+      onClick: () => {
+        handleChange('dark');
+        closeTooltip();
+      },
+    },
+  ];
 
   return (
-    <>
-      <p>theme: {theme}</p>
-      <button onClick={() => handleChange('clean')}>default</button>
-      <button onClick={() => handleChange('dark')}>dark</button>
-    </>
+    <WithTooltip
+      placement="top"
+      trigger="click"
+      tooltip={({ onHide }) => <TooltipLinkList links={themes(onHide)} />}
+    >
+      <IconButtonWithLabel
+        key="viewport"
+        title="Change the size of the preview"
+      >
+        <IconButtonLabel>{theme} theme</IconButtonLabel>
+        <Icons icon="arrowdown" />
+      </IconButtonWithLabel>
+    </WithTooltip>
   );
 };
 
