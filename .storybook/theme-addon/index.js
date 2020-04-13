@@ -17,6 +17,8 @@ export default makeDecorator({
     useEffect(() => {
       const themeName = localStorage.getItem('design-box-theme');
       setTheme(themeName);
+
+      return () => channel.off('change/setTheme', setTheme);
     }, []);
 
     return (
