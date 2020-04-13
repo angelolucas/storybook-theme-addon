@@ -1,11 +1,11 @@
 import React from 'react';
 import { configure, addDecorator, addParameters } from '@storybook/react';
-import ThemeAddon from '@theme-addon';
+import DesignBoxThemeAddon from '@design-box-theme-addon';
 import Wrapper from './wrapper';
 
 addDecorator(Wrapper);
 
-addDecorator(ThemeAddon('angelo'));
+addDecorator(DesignBoxThemeAddon());
 
 addParameters({
   backgrounds: [

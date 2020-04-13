@@ -20,7 +20,7 @@ module.exports = {
       {
         alias: {
           '@src': './src',
-          '@theme-addon': './.storybook/theme-addon',
+          '@design-box-theme-addon': './.storybook/design-box-theme-addon',
         },
       },
     ],
