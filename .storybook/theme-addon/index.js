@@ -7,7 +7,7 @@ export default makeDecorator({
   name: 'withMyAddon',
   parameterName: 'myParameter',
 
-  wrapper: (getStory, context) => {
+  wrapper: (getStory, context, themes) => {
     const storedTheme = localStorage.getItem('design-box-theme');
     const [theme, setTheme] = useState(storedTheme);
     const channel = addons.getChannel();

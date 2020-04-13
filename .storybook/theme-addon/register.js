@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { addons, types } from '@storybook/addons';
 import { styled } from '@storybook/theming';
+import { useParameter } from '@storybook/api';
 import {
   Icons,
   IconButton,
@@ -30,30 +31,22 @@ const ChangeThemeTool = () => {
     channel.emit('design-box/theme', themeName);
     setTheme(themeName);
   };
-  const themes = closeTooltip => [
-    {
-      id: 'clean',
-      title: 'Clean',
+  const themes = useParameter('designboxThemes');
+  const links = closeTooltip =>
+    themes.map((theme, key) => ({
+      key: key,
+      title: theme,
       onClick: () => {
-        handleChange('clean');
+        handleChange(theme);
         closeTooltip();
       },
-    },
-    {
-      id: 'dark',
-      title: 'Dark',
-      onClick: () => {
-        handleChange('dark');
-        closeTooltip();
-      },
-    },
-  ];
+    }));
 
   return (
     <WithTooltip
       placement="top"
       trigger="click"
-      tooltip={({ onHide }) => <TooltipLinkList links={themes(onHide)} />}
+      tooltip={({ onHide }) => <TooltipLinkList links={links(onHide)} />}
     >
       <IconButtonWithLabel
         key="viewport"

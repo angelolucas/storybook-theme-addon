@@ -5,13 +5,14 @@ import Wrapper from './wrapper';
 
 addDecorator(Wrapper);
 
-addDecorator(ThemeAddon);
+addDecorator(ThemeAddon('angelo'));
 
 addParameters({
   backgrounds: [
     { name: 'twitter', value: '#00aced', default: true },
     { name: 'facebook', value: '#3b5998' },
   ],
+  designboxThemes: ['clean', 'dark'],
 });
 
 // automatically import all files ending in *.stories.js
